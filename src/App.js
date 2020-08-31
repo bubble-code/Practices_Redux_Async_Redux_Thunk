@@ -1,23 +1,31 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { InputTodos } from './Component/InputTodos';
+import { ShowTodos } from './Component/ShowTodos';
+import {DELETE_TODO} from './Reduce/constant'
+import {fetchTodos, deleteTodos} from './Reduce/actions'
 
 function App() {
+  const show = useSelector(state => state.todo);
+  const dispatch = useDispatch();
+  const handleDelete = id => {
+    dispatch(deleteTodos(id))
+}
+useEffect(() => {
+  dispatch(fetchTodos())
+ 
+}, [])
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <ul>
+          <ShowTodos data={show} dispacthh={handleDelete}/>
+        </ul>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <InputTodos dispatch={dispatch} style={{ background: 'white' }} />
       </header>
     </div>
   );

@@ -1,0 +1,7 @@
+
+ const ADD_TODO = 'ADD_TODO';
+ const DELETE_TODO = 'DELETE_TODO'; 
+ const SET_TODO = 'SET_TODO';
+ const POST_TODO = 'POST_TODO';
+ 
+ export {ADD_TODO,DELETE_TODO,SET_TODO,POST_TODO}  
